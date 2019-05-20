@@ -26,13 +26,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     private final ViewBinderHelper binderHelper = new ViewBinderHelper();
 
 
+
     public RecyclerAdapter(Context context, List<String> dataSet) {
         mContext = context;
         mDataSet = dataSet;
         mInflater = LayoutInflater.from(context);
 
         // uncomment if you want to open only one row at a time
-        // binderHelper.setOpenOnlyOne(true);
+         binderHelper.setOpenOnlyOne(true);
     }
 
     @Override
@@ -89,6 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         public ViewHolder(View itemView) {
             super(itemView);
             swipeLayout = (SwipeRevealLayout) itemView.findViewById(R.id.swipe_layout);
+
             frontLayout = itemView.findViewById(R.id.front_layout);
             deleteLayout = itemView.findViewById(R.id.delete_layout);
             textView = (TextView) itemView.findViewById(R.id.text);
@@ -110,9 +112,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View view) {
                     String displayText = "" + data + " clicked";
                     Toast.makeText(mContext, displayText, Toast.LENGTH_SHORT).show();
+                    swipeLayout.close(true);
                     Log.d("RecyclerAdapter", displayText);
                 }
             });
+
+
+
+
         }
     }
 }

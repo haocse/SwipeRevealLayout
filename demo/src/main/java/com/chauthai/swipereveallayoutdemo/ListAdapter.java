@@ -28,12 +28,12 @@ public class ListAdapter extends ArrayAdapter<String> {
         binderHelper = new ViewBinderHelper();
 
         // uncomment if you want to open only one row at a time
-        // binderHelper.setOpenOnlyOne(true);
+         binderHelper.setOpenOnlyOne(true);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.row_list, parent, false);
@@ -64,6 +64,7 @@ public class ListAdapter extends ArrayAdapter<String> {
                 @Override
                 public void onClick(View view) {
                     String displayText = "" + item + " clicked";
+                    holder.swipeLayout.close(true);
                     Toast.makeText(getContext(), displayText, Toast.LENGTH_SHORT).show();
                     Log.d("ListAdapter", displayText);
                 }
